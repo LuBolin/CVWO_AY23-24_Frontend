@@ -15,7 +15,6 @@ export default function MyAppbar() {
     const { isSignedIn, username } = useContext(AuthContext);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const navigate = useNavigate();
-    console.log("appbar re-render with isSignedIn = ", isSignedIn, " and username = ", username)
     function renderForumActions(currentPage: string) {
         // forum, post, new_post
         return <React.Fragment>

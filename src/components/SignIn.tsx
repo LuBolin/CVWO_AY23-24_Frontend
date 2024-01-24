@@ -29,7 +29,6 @@ export default function SignIn() {
     const password = data.get('password')?.toString() ?? "";
 
     function onSignIn(jwt: string){
-      console.log("Signed in! gonna write jwt to cookies now")
       Cookies.set('jwtToken', jwt, { expires: 1 }); // Set the cookie to expire in 1 day
       // localStorage.setItem('username', username);
       navigate('/forum');
@@ -37,8 +36,6 @@ export default function SignIn() {
 
     const temp = submitSignIn(username, password)
     temp.then((result) => {
-      window.alert("submit signin result = " + JSON.stringify(result));
-      console.log("submit signin result = ", result);
       if (result?.success) {
         const msg = result.message;
         const jwtToken = msg['jwtToken'];

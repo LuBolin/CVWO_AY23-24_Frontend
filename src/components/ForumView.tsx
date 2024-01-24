@@ -68,7 +68,6 @@ function ForumView() {
 
     useEffect(() => {
         const offset = (currentPage - 1); // do not multiply by chunksize here, that is done in the back end
-        console.log("title: " + search_title + " topic: " + search_topic + " offset: " + offset + " chunkSize: " + chunkSize)
         fetchForumData(search_title, search_topic, offset, chunkSize).then(reply => {
             setHasQueried(true);
             if (reply.error) {
