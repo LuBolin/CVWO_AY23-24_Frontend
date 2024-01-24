@@ -80,8 +80,6 @@ interface RenderCommentProps {
 
 const RenderComment: React.FC<RenderCommentProps> = 
     ({ isSignedIn, user_id, post_id, data, fetchCommentsCallback }) => {
-    // naming difference between global types and props here. 
-    // global types have to match the way jsons are normally used, which is with underscore. but camelCase feels better here
     const { comment_id, author, author_id, date, content } = data;
     const isAuthor = (user_id === author_id);
 

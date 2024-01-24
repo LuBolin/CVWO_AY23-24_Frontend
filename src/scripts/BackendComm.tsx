@@ -60,7 +60,6 @@ export const submitSignIn = async (username: string, password: string) => {
     });
 
     const result = await response.json();
-    console.log("Submit sign in result = ", result)
 
     if (response.status == 401) {
       return { success: false, message: result.msg };
