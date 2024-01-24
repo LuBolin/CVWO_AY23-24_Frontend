@@ -38,7 +38,6 @@ export default function SignIn() {
     temp.then((result) => {
       if (result?.success) {
         const msg = result.message;
-        // console.log("Sign in msg:", msg);
         const jwtToken = msg['jwtToken'];
         if (onSignIn){
           onSignIn(username, jwtToken);

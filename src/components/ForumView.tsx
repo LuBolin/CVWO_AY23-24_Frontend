@@ -50,7 +50,7 @@ const chunkSize = FORUM_PAGE_CHUNK_SIZE;
 function ForumView() {
     const [searchParams] = useSearchParams();
     const search_title = searchParams.get('title') || "";
-    const search_topic = searchParams.get('topic') || "";
+    const search_topic = searchParams.get('topic') || "All";
     
     const [posts, setPosts] = useState<PostData[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(1);
@@ -68,6 +68,7 @@ function ForumView() {
 
     useEffect(() => {
         const offset = (currentPage - 1); // do not multiply by chunksize here, that is done in the back end
+        console.log("title: " + search_title + " topic: " + search_topic + " offset: " + offset + " chunkSize: " + chunkSize)
         fetchForumData(search_title, search_topic, offset, chunkSize).then(reply => {
             setHasQueried(true);
             if (reply.error) {

@@ -16,7 +16,6 @@ interface RenderPostProps {
 
 const RenderPost: React.FC<RenderPostProps> = ({ data }) => {
     const { title, topic, author, content, date } = data;
-    console.log("Content: " + content);
     function getKeyByValue(value: string, enumType: { [s: string]: string }): string | undefined {
         return Object.keys(enumType).find(key => enumType[key] === value);
     }

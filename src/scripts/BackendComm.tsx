@@ -29,7 +29,6 @@ export const submitSignUp = async (username: string, email: string, password: st
       return { success: false, message: result.msg };
     }
     else if (response.status == 200) {
-      // console.log('SignUp successful:', result);
       return { success: true, message: result.msg };
     }
     else {
@@ -147,9 +146,6 @@ export async function newPost(title: string, topic: PostTypes, content: string) 
     topic,
     content,
   })
-
-  console.log("Content: " + content)
-  console.log("Data: " + data)
 
   try {
     const response = await fetch(url, {
