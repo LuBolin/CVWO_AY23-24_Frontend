@@ -1,6 +1,5 @@
 enum HomePages {
     forum,
-    map,
     post,
     new_post
 }

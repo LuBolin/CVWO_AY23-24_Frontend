@@ -3,7 +3,6 @@ import { Fragment, useState } from 'react';
 import { HomePages } from '../Global';
 
 import ForumView from './ForumView';
-import MapView from './MapView';
 import NewPostView from './NewPostView';
 
 interface UserProps {
@@ -13,7 +12,7 @@ interface UserProps {
 export default function HomeView ({ isSignedIn}: UserProps) {
   const [activeHome, setActiveHome] = useState(
     localStorage.getItem('activeHome') || HomePages.forum
-  ); // 'forum', 'map', 'post', 'new_post'
+  ); // 'forum', 'post', 'new_post'
 
 
   function renderComponent() {
@@ -24,7 +23,6 @@ export default function HomeView ({ isSignedIn}: UserProps) {
       <Stack direction="row">
         <Box sx={{ flexGrow: 1 }} /> {/* Left spacer */}
         <Button onClick={() => setActiveHome(HomePages.forum)} color="inherit">Forum</Button>
-        <Button onClick={() => setActiveHome(HomePages.map)} color="inherit">Map</Button>
         <Button onClick={() => setActiveHome(HomePages.new_post)} color="inherit">New Post</Button>
         <Box sx={{ flexGrow: 1 }} /> {/* Right spacer */}
       </Stack>
@@ -34,9 +32,6 @@ export default function HomeView ({ isSignedIn}: UserProps) {
     switch (activeHome) {
       case HomePages.forum:
         homeView = <ForumView />;
-        break;
-      case HomePages.map:
-        homeView = <MapView />;
         break;
       case HomePages.new_post:
         homeView = <NewPostView />;

@@ -8,7 +8,6 @@ import { Box } from '@mui/material';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import SignOut from './components/SignOut';
 import ForumView from './components/ForumView';
-import MapView from './components/MapView';
 import FourOhFour from './components/FourOhFour';
 import { AuthProvider } from './components/AuthContext';
 import NewPostView from './components/NewPostView';
@@ -30,7 +29,6 @@ function App() {
             <Routes>
               <Route path="/" element={<Navigate to="/forum" />} /> {/* Redirect to forum */}
               <Route path="/forum" element={<ForumView />} />
-              <Route path="/map" element={<MapView />} />
               <Route path="/post" element={<Navigate to="/forum" />} /> {/* Redirect to forum */}
               <Route path="/post/:post_id" element={<PostView />} />
               <Route path="/newpost" element={<NewPostView />} />

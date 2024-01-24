@@ -29,10 +29,9 @@ export default function MyAppbar() {
   }, []);
   
     function renderForumActions(currentPage: string) {
-        // forum, map, post, new_post
+        // forum, post, new_post
         return <React.Fragment>
             {currentPage != 'Forum' ? <Button onClick={() => navigate('/')} color="inherit">Forum</Button> : null}
-            {currentPage != 'Map' ? <Button onClick={() => navigate('/map')} color="inherit">Map</Button> : null}
             {currentPage != 'New Post' ? <Button onClick={() => navigate('/newpost')} color="inherit">New Post</Button> : null}
         </React.Fragment>
     }
