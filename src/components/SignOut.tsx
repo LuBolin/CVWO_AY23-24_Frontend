@@ -8,7 +8,7 @@ export default function SignOut() {
     useEffect(() => {
         function onSignOut() {
             Cookies.remove('jwtToken');
-            localStorage.removeItem('username');
+            // localStorage.removeItem('username');
             navigate('/');
         }
 

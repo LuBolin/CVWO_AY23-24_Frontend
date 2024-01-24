@@ -15,17 +15,7 @@ export default function MyAppbar() {
     const { isSignedIn, username } = useContext(AuthContext);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const navigate = useNavigate();
-    
-  //   useEffect(() => {
-  //     const handleStorageChange = () => {
-  //         setUsername(localStorage.getItem('username') || "John Doe");
-  //     };
-  //     window.addEventListener('storage', handleStorageChange);
-  //     return () => {
-  //         window.removeEventListener('storage', handleStorageChange);
-  //     };
-  // }, []);
-  
+    console.log("appbar re-render with isSignedIn = ", isSignedIn, " and username = ", username)
     function renderForumActions(currentPage: string) {
         // forum, post, new_post
         return <React.Fragment>

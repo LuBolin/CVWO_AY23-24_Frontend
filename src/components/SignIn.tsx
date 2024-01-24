@@ -28,9 +28,10 @@ export default function SignIn() {
     const username = data.get('username')?.toString() ?? "";
     const password = data.get('password')?.toString() ?? "";
 
-    function onSignIn(username: string, jwt: string){
+    function onSignIn(jwt: string){
+      console.log("Signed in! gonna write jwt to cookies now")
       Cookies.set('jwtToken', jwt, { expires: 1 }); // Set the cookie to expire in 1 day
-      localStorage.setItem('username', username);
+      // localStorage.setItem('username', username);
       navigate('/forum');
     }
 
@@ -40,7 +41,7 @@ export default function SignIn() {
         const msg = result.message;
         const jwtToken = msg['jwtToken'];
         if (onSignIn){
-          onSignIn(username, jwtToken);
+          onSignIn(jwtToken);
         }
       }
       else{
