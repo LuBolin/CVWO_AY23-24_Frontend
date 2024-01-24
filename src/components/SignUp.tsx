@@ -9,7 +9,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Copyright from './Copyright';
-import { UsernameValidate, PasswordValidate, EmailValidate } from '../scripts/PasswordRegex';
+import { usernameValidate, passwordValidate, emailValidate } from '../scripts/PasswordRegex';
 import { useState } from 'react';
 import { submitSignUp } from '../scripts/BackendComm';
 import { useNavigate } from 'react-router-dom';
@@ -34,9 +34,9 @@ export default function SignUp() {
     const email = data.get('email')?.toString() ?? "";
     const password = data.get('password')?.toString() ?? "";
 
-    const uValidity = UsernameValidate(username);
-    const eValidity = EmailValidate(email);
-    const pValidity = PasswordValidate(password);
+    const uValidity = usernameValidate(username);
+    const eValidity = emailValidate(email);
+    const pValidity = passwordValidate(password);
 
     setUsernameValidity(uValidity);
     setEmailValidity(eValidity);
