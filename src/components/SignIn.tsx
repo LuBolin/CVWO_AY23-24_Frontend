@@ -37,6 +37,8 @@ export default function SignIn() {
 
     const temp = submitSignIn(username, password)
     temp.then((result) => {
+      window.alert("submit signin result = " + JSON.stringify(result));
+      console.log("submit signin result = ", result);
       if (result?.success) {
         const msg = result.message;
         const jwtToken = msg['jwtToken'];
