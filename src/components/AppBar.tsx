@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { AccountCircle, LocalMallRounded } from '@mui/icons-material';
 import AppBar from '@mui/material/AppBar';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { IconButton, Menu, MenuItem } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from './AuthContext';
@@ -12,21 +12,19 @@ import { AuthContext } from './AuthContext';
 
 
 export default function MyAppbar() {
-    const { isSignedIn } = useContext(AuthContext);
+    const { isSignedIn, username } = useContext(AuthContext);
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-    const [username, setUsername] = useState(
-      localStorage.getItem('username') || "John Doe");
     const navigate = useNavigate();
     
-    useEffect(() => {
-      const handleStorageChange = () => {
-          setUsername(localStorage.getItem('username') || "John Doe");
-      };
-      window.addEventListener('storage', handleStorageChange);
-      return () => {
-          window.removeEventListener('storage', handleStorageChange);
-      };
-  }, []);
+  //   useEffect(() => {
+  //     const handleStorageChange = () => {
+  //         setUsername(localStorage.getItem('username') || "John Doe");
+  //     };
+  //     window.addEventListener('storage', handleStorageChange);
+  //     return () => {
+  //         window.removeEventListener('storage', handleStorageChange);
+  //     };
+  // }, []);
   
     function renderForumActions(currentPage: string) {
         // forum, post, new_post
