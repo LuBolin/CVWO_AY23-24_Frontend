@@ -1,68 +1,60 @@
-import { Typography, Button, Grid } from '@mui/material';
+import { Stack, Button, Box } from '@mui/material';
 import { Fragment, useState } from 'react';
-import DefaultHome from './DefaultHome';
-import ListView from './ListView';
-import NewPostButton from './NewPostButton';
+import { HomePages } from '../Global';
+
+import ForumView from './ForumView';
+import MapView from './MapView';
+import NewPostView from './NewPostView';
 
 interface UserProps {
   isSignedIn: boolean;
-  username: string;
 }
 
-export default function HomeView ({ isSignedIn, username }: UserProps) {
+export default function HomeView ({ isSignedIn}: UserProps) {
   const [activeHome, setActiveHome] = useState(
-    localStorage.getItem('activeHome') || 'default'
-  ); // 'default', 'map', 'list'
+    localStorage.getItem('activeHome') || HomePages.forum
+  ); // 'forum', 'map', 'post', 'new_post'
 
 
-  function renderComponent(component: JSX.Element) {
+  function renderComponent() {
     const buttons = 
     <Fragment>
-      <Button onClick={() => setActiveHome('default')} color="inherit">Default</Button>
-      <Button onClick={() => setActiveHome('map')} color="inherit">Map</Button>
-      <Button onClick={() => setActiveHome('list')} color="inherit">List</Button>
+      {isSignedIn ? <h4>Welcome</h4> : <h4>Please Sign In</h4>}
+      <br />
+      <Stack direction="row">
+        <Box sx={{ flexGrow: 1 }} /> {/* Left spacer */}
+        <Button onClick={() => setActiveHome(HomePages.forum)} color="inherit">Forum</Button>
+        <Button onClick={() => setActiveHome(HomePages.map)} color="inherit">Map</Button>
+        <Button onClick={() => setActiveHome(HomePages.new_post)} color="inherit">New Post</Button>
+        <Box sx={{ flexGrow: 1 }} /> {/* Right spacer */}
+      </Stack>
     </Fragment>
 
     let homeView = null;
     switch (activeHome) {
-      case 'default':
-        homeView = <DefaultHome />;
+      case HomePages.forum:
+        homeView = <ForumView />;
         break;
-      case 'list':
-        homeView = <ListView />;
+      case HomePages.map:
+        homeView = <MapView />;
+        break;
+      case HomePages.new_post:
+        homeView = <NewPostView />;
         break;
       default:
-        homeView = <DefaultHome />;
+        homeView = <ForumView />;
         break;
     }
 
     return <Fragment>
       {buttons}
-      {component}
       {homeView}
     </Fragment>
   }
 
-  const nameAndButtons = 
-  <Fragment>
-    <Grid container spacing={2} alignItems="center" justifyContent="center">
-        <Grid item xs={12}>
-          <Typography variant="h4" align="center" gutterBottom>
-            {isSignedIn
-              ? `Welcome, ${username}!`
-              : 'Please log in to see your welcome message'}
-          </Typography>
-        </Grid>
-      </Grid>
-  </Fragment>
-
   return (
     <Fragment>
-      {renderComponent(nameAndButtons)}
-      {isSignedIn
-      ? <NewPostButton onNewPost={() => window.alert('New Post')} />
-      : <div/>
-    }
+      {renderComponent()}
     </Fragment>
   );
 }

@@ -12,18 +12,19 @@ import Copyright from './Copyright';
 import { UsernameValidate, PasswordValidate, EmailValidate } from '../scripts/PasswordRegex';
 import { useState } from 'react';
 import { submitSignUp } from '../scripts/BackendComm';
-
-interface SignUpProps {
-  onGotoSignIn?: () => void;
-  onSignIn?: (username: string) => void;
-}
+import { useNavigate } from 'react-router-dom';
 
 
-export default function SignUp( {onGotoSignIn } : SignUpProps) {
+export default function SignUp() {
   
   const [usernameValidity, setUsernameValidity] = useState('Valid');
   const [emailValidity, setEmailValidity] = useState('Valid');
   const [passwordValidity, setPasswordValidity] = useState('Valid');
+  const navigate = useNavigate();
+  
+  const onGotoSignIn = () => {
+    navigate('/account/signin');
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -43,16 +44,12 @@ export default function SignUp( {onGotoSignIn } : SignUpProps) {
 
     const allClear = uValidity == 'Valid' && eValidity == 'Valid' && pValidity == 'Valid'
 
-    console.log(allClear)
-
     if (allClear){
       const temp = submitSignUp(username, email, password)
       temp.then((temp) => {
         if (temp?.success) {
-            if (onGotoSignIn){
-              onGotoSignIn();
-              window.alert("Sign up successful!\nPlease sign in.")
-            }
+            onGotoSignIn();
+            window.alert("Sign up successful!\nPlease sign in.")
         }
         else{
           const msg = temp?.message ?? "Unknown error"

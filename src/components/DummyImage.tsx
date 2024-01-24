@@ -1,8 +1,7 @@
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 import sgBackground from '../assets/SGBackground.png';
 
-function DefaultHome() {
-    
+function dummyImage() {
     return (
         <Box
             sx={{
@@ -23,7 +22,7 @@ function DefaultHome() {
         >
             <h1 className='splashHeader'><em>Locale Lookout</em></h1>
         </Box>
-        );
-    }
+    );
+}
 
-export default DefaultHome;
+export default dummyImage;

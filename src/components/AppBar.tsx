@@ -2,50 +2,113 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import { LocalMallRounded } from '@mui/icons-material';
-import AppBar, { AppBarProps } from '@mui/material/AppBar';
-import React from 'react';
-
-interface MyAppBarProps extends AppBarProps {
-    isSignedIn: boolean;
-    onSetActivePage: (page: string) => void;
-    onSignOut: () => void;
-  }
+import { AccountCircle, LocalMallRounded } from '@mui/icons-material';
+import AppBar from '@mui/material/AppBar';
+import React, { useContext, useEffect, useState } from 'react';
+import { IconButton, Menu, MenuItem } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from './AuthContext';
 
 
-export default function MyAppbar( { isSignedIn, onSetActivePage, onSignOut }: MyAppBarProps) {
+
+export default function MyAppbar() {
+    const { isSignedIn } = useContext(AuthContext);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [username, setUsername] = useState(
+      localStorage.getItem('username') || "John Doe");
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+      const handleStorageChange = () => {
+          setUsername(localStorage.getItem('username') || "John Doe");
+      };
+      window.addEventListener('storage', handleStorageChange);
+      return () => {
+          window.removeEventListener('storage', handleStorageChange);
+      };
+  }, []);
+  
+    function renderForumActions(currentPage: string) {
+        // forum, map, post, new_post
+        return <React.Fragment>
+            {currentPage != 'Forum' ? <Button onClick={() => navigate('/')} color="inherit">Forum</Button> : null}
+            {currentPage != 'Map' ? <Button onClick={() => navigate('/map')} color="inherit">Map</Button> : null}
+            {currentPage != 'New Post' ? <Button onClick={() => navigate('/newpost')} color="inherit">New Post</Button> : null}
+        </React.Fragment>
+    }
+    function renderUserActions(isLoggedIn: boolean) {
+        if (isLoggedIn){
+            return <React.Fragment>
+                <Button onClick={() => navigate('/account/signout')} color="inherit">Logout</Button>
+            </React.Fragment>
+        }
+        else{
+            return <React.Fragment>
+                <Button onClick={() => navigate('/account/signup')} color="inherit">Sign Up</Button>
+                <Button onClick={() => navigate('/account/signin')} color="inherit">Login</Button>
+            </React.Fragment>
+        }
+    }
+
+    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
     <Box sx={{ display: 'flex' }}>
     <AppBar position="absolute">
         <Toolbar>
         <LocalMallRounded sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
         <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="#"
-            sx={{
-            mr: 2,
-            display: { xs: 'none', md: 'flex' },
-            fontFamily: 'monospace',
-            fontWeight: 700,
-            letterSpacing: '.3rem',
-            color: 'inherit',
-            textDecoration: 'none',
-            }}
-            onClick={() => onSetActivePage('home')}
+            variant="h5" noWrap component="a" href="#"
+            sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, fontFamily: 'monospace', fontWeight: 700, 
+                letterSpacing: '.3rem', color: 'inherit', textDecoration: 'none',}}
+            onClick={() => navigate('/')}
         >
             LocaleLookout
         </Typography>
-        <Box sx={{ flexGrow: 1 }} />
+        <Box sx={{ flexGrow: 1 }} /> {/* Middle spacer */}
         {isSignedIn ?
-            <Button onClick={() => onSignOut()} color="inherit">Logout</Button>
+            renderForumActions('forum')
             : 
-            <React.Fragment>
-                <Button onClick={() => onSetActivePage('signup')} color="inherit">Sign Up</Button>
-                <Button onClick={() => onSetActivePage('signin')} color="inherit">Login</Button>
-            </React.Fragment>
+            <React.Fragment></React.Fragment>
         }
+        {renderUserActions(isSignedIn)}
+        {isSignedIn && (
+            <div>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle/>
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+              >
+                <MenuItem >{username}</MenuItem>
+                <MenuItem onClick={() => navigate('/account/signout')}>Sign Out</MenuItem>
+              </Menu>
+            </div>
+          )}
         </Toolbar>
     </AppBar>
     </Box>

@@ -11,18 +11,15 @@ import Copyright from './Copyright';
 import { Container } from '@mui/material';
 import { useState } from 'react';
 import { submitSignIn } from '../scripts/BackendComm';
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 
-interface SignUpProps {
-  onGotoSignUp?: () => void;
-  onSignIn?: (username: string, jwt: string) => void;
-}
-
-
-export default function SignIn( { onGotoSignUp, onSignIn } : SignUpProps) {
+export default function SignIn() {
 
   const [usernameValidity, setUsernameValidity] = useState('Valid');
   const [passwordValidity, setPasswordValidity] = useState('Valid');
+  const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,11 +28,18 @@ export default function SignIn( { onGotoSignUp, onSignIn } : SignUpProps) {
     const username = data.get('username')?.toString() ?? "";
     const password = data.get('password')?.toString() ?? "";
 
+    function onSignIn(username: string, jwt: string){
+      Cookies.set('jwtToken', jwt, { expires: 1 }); // Set the cookie to expire in 1 day
+      localStorage.setItem('username', username);
+      navigate('/forum');
+    }
+
     const temp = submitSignIn(username, password)
     temp.then((result) => {
       if (result?.success) {
-        const msg = result.message
-        const jwtToken = msg['jwt_auth'];
+        const msg = result.message;
+        // console.log("Sign in msg:", msg);
+        const jwtToken = msg['jwtToken'];
         if (onSignIn){
           onSignIn(username, jwtToken);
         }
@@ -107,7 +111,7 @@ export default function SignIn( { onGotoSignUp, onSignIn } : SignUpProps) {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" onClick={onGotoSignUp} variant="body2">
+                <Link href="#" onClick={() => navigate('/signup')} variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
