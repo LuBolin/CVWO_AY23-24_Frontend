@@ -41,7 +41,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           setUser_id(-1);
           setUsername("");
           if (location.pathname === '/newpost') {
-            navigate('/accounts/signin');
+            navigate('/account/signin');
           }
         }
       })
@@ -50,7 +50,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setUser_id(-1);
         setUsername("");
         if (location.pathname === '/newpost') {
-          navigate('/accounts/signin');
+          navigate('/account/signin');
         }
       });
   }, [location, navigate]);

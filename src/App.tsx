@@ -18,8 +18,6 @@ import PostView from './components/PostView';
 function App() {
   const appTheme = createTheme({palette:{mode: 'light'}});
 
-  console.log("Reloading route with location: " + window.location.pathname);
-
   return (
     <BrowserRouter>
       <AuthProvider>
