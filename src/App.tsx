@@ -5,22 +5,28 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import { Box } from '@mui/material';
-// import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import SignOut from './components/SignOut';
 import ForumView from './components/ForumView';
 import FourOhFour from './components/FourOhFour';
 import { AuthProvider } from './components/AuthContext';
 import NewPostView from './components/NewPostView';
 import PostView from './components/PostView';
+import { useEffect } from 'react';
 
 
 
 function App() {
   const appTheme = createTheme({palette:{mode: 'light'}});
 
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log("");
+  }, [location]);
+  
   return (
-    <HashRouter>
+    <BrowserRouter>
       <AuthProvider>
         <ThemeProvider theme={appTheme}>
           <CssBaseline enableColorScheme />
@@ -42,7 +48,7 @@ function App() {
           </Box>
         </ThemeProvider>
       </AuthProvider>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
