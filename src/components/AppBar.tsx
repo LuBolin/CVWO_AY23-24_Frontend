@@ -47,7 +47,7 @@ export default function MyAppbar() {
     <Box sx={{ display: 'flex' }}>
     <AppBar position="absolute">
         <Toolbar>
-        <LocalMallRounded sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+        <LocalMallRounded sx={{ mr: 1 }} />
         <Typography
             variant="h5" noWrap component="a" href="#"
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' }, fontFamily: 'monospace', fontWeight: 700, 
