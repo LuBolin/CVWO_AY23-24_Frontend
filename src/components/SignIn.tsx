@@ -31,7 +31,6 @@ export default function SignIn() {
 
     function onSignIn(jwt: string){
       Cookies.set('jwtToken', jwt, { expires: 1 }); // Set the cookie to expire in 1 day
-      // localStorage.setItem('username', username);
       navigate('/forum');
     }
 
@@ -111,7 +110,7 @@ export default function SignIn() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" onClick={() => navigate('/account/signup')} variant="body2">
+                <Link onClick={() => navigate('/account/signup')} variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
