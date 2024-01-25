@@ -1,4 +1,4 @@
-# CVWO 23/24 Project Golang Backend
+# CVWO 23/24 Project Golang Frontend
 Lu Bolin
 
 
