@@ -176,11 +176,12 @@ function PostView() {
             setHasQueried(true);
             if (reply.error) {
                 console.error(reply.error);
+                navigate('/forum');
                 return;
             }
             if (!reply.data.post) {
                 console.error("No post returned");
-                setPost(null);
+                navigate('/forum');
                 return;
             }
             setPost(reply.data.post);
