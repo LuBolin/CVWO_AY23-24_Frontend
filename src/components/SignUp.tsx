@@ -21,10 +21,7 @@ export default function SignUp() {
   const [emailValidity, setEmailValidity] = useState('Valid');
   const [passwordValidity, setPasswordValidity] = useState('Valid');
   const navigate = useNavigate();
-  
-  const onGotoSignIn = () => {
-    navigate('/account/signin');
-  };
+ 
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -49,7 +46,7 @@ export default function SignUp() {
       const temp = submitSignUp(username, email, password)
       temp.then((temp) => {
         if (temp?.success) {
-            onGotoSignIn();
+          navigate('/account/signin');
             window.alert("Sign up successful!\nPlease sign in.")
         }
         else{
@@ -136,7 +133,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" onClick={onGotoSignIn} variant="body2">
+                <Link href="#" onClick={() => navigate('/account/signin')} variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
