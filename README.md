@@ -42,5 +42,8 @@ When hosting online, for example in the case of render.com, you can set them fro
 
 #### Build & Run command:
 ```bash
-npm install; npm run build
+npm install
+npm run dev
 ```
+Note that if you were to deploy, use npm run build to build it.
+Dev is used here for a quick local service for testing.
