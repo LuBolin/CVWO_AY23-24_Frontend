@@ -18,6 +18,7 @@ import PostView from './components/PostView';
 function App() {
   const appTheme = createTheme({palette:{mode: 'light'}});
 
+  console.log(location.pathname)
   return (
     <BrowserRouter>
       <AuthProvider>
