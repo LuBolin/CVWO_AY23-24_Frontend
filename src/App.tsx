@@ -5,26 +5,19 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import { Box } from '@mui/material';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import SignOut from './components/SignOut';
 import ForumView from './components/ForumView';
 import FourOhFour from './components/FourOhFour';
 import { AuthProvider } from './components/AuthContext';
 import NewPostView from './components/NewPostView';
 import PostView from './components/PostView';
-import { useEffect } from 'react';
 
 
 
 function App() {
   const appTheme = createTheme({palette:{mode: 'light'}});
 
-  const location = useLocation();
-
-  useEffect(() => {
-    console.log("");
-  }, [location]);
-  
   return (
     <BrowserRouter>
       <AuthProvider>
@@ -34,15 +27,15 @@ function App() {
           <div id="AppbarSpaceHolder" style={{ height: '64px' }} />
           <Box style={{ position: 'relative', border: '4px solid pink', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
             <Routes>
-              <Route path="/" element={<Navigate to="/forum" />} /> {/* Redirect to forum */}
-              <Route path="/forum" element={<ForumView />} />
-              <Route path="/post" element={<Navigate to="/forum" />} /> {/* Redirect to forum */}
-              <Route path="/post/:post_id" element={<PostView />} />
-              <Route path="/newpost" element={<NewPostView />} />
               <Route path="/account/signup" element={<SignUp />} />
               <Route path="/account/signin" element={<SignIn />} />
               <Route path="/account/signout" element={<SignOut />} />
+              <Route path="/post" element={<Navigate to="/forum" />} /> {/* Redirect to forum */}
+              <Route path="/post/:post_id" element={<PostView />} />
+              <Route path="/forum" element={<ForumView />} />
+              <Route path="/newpost" element={<NewPostView />} />
               <Route path="/404" element={<FourOhFour />} />
+              <Route path="/" element={<Navigate to="/forum" />} /> {/* Redirect to forum */}
               <Route path="*" element={<Navigate to="/404" replace />} /> {/* Redirect to 404 page */}      
             </Routes>
           </Box>
