@@ -2,12 +2,29 @@
 Lu Bolin
 
 
+## Hosted demo:
+The entire experience is accessible at [LocaleLookout](https://localelookout.onrender.com/).
+
+
+
 ## Setup Instructions
 
 Remember to setup the backend too. It can be found at [LuBolin/CVWO_AY23-24_Backend (github.com)](https://github.com/LuBolin/CVWO_AY23-24_Backend).
 
-Clone this repo.
+#### Prerequisites:
+- Postgresql 15
+- Golang 1.21.4
 
+Forward compatability is expected as there were no major changes around these versions.
+However, they have not been tested.
+
+
+
+
+**Clone this repository**
+```bash
+git clone https://github.com/LuBolin/CVWO_AY23-24_Frontend.git
+```
 
 #### Rewrite rule:
 On the hosting server, set a **rewrite** rule from /* to /index.html. This helps static webpages to work with React's routing.
