@@ -49,8 +49,8 @@ const chunkSize = FORUM_PAGE_CHUNK_SIZE;
 
 function ForumView() {
     const [searchParams] = useSearchParams();
-    const search_title = searchParams.get('title') || "";
-    const search_topic = searchParams.get('topic') || "All";
+    const search_title: string = searchParams.get('title') || "";
+    const search_topic: string = searchParams.get('topic') || "All";
     
     const [posts, setPosts] = useState<PostData[]>([]);
     const [currentPage, setCurrentPage] = useState<number>(1);

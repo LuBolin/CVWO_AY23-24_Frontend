@@ -15,16 +15,12 @@ import { newPost } from '../scripts/BackendComm';
 import { useNavigate } from 'react-router-dom';
 
 
-interface NewPostProps {
-  // Additional props if needed
-}
-
-const NewPostView: React.FC<NewPostProps> = () => {
+function NewPostView() {
   const [title, setTitle] = useState<string>('');
   const [topic, setTopic] = useState<PostTypes>(PostTypes.general);
   const [content, setContent] = useState<string>('');
   const navigate = useNavigate();
-  const isPublishButtonDisabled = !title || !content;
+  const isPublishButtonDisabled: boolean = !title || !content;
 
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
@@ -111,6 +107,6 @@ const NewPostView: React.FC<NewPostProps> = () => {
       </Button>
     </Container>
   );
-};
+}
 
 export default NewPostView;

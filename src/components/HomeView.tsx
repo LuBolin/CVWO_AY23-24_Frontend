@@ -10,9 +10,10 @@ interface UserProps {
 }
 
 export default function HomeView ({ isSignedIn}: UserProps) {
-  const [activeHome, setActiveHome] = useState(
-    localStorage.getItem('activeHome') || HomePages.forum
-  ); // 'forum', 'post', 'new_post'
+  // const [activeHome, setActiveHome] = useState<HomePages>(
+  //   localStorage.getItem('activeHome') || HomePages.forum
+  // ); // 'forum', 'post', 'new_post'
+  const [activeHome, setActiveHome] = useState<HomePages>(HomePages.forum);
 
 
   function renderComponent() {

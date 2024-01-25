@@ -152,7 +152,7 @@ const RenderComment: React.FC<RenderCommentProps> =
 
 function PostView() {
     const { post_id } = useParams();
-    const post_idNum = parseInt(post_id || '');
+    const post_idNum: number = parseInt(post_id || '');
     const { isSignedIn, user_id } = useContext(AuthContext);
   
     const [post, setPost] = useState<PostData | null>(null);

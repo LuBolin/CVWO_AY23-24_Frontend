@@ -30,13 +30,14 @@ export default function SignUp() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     
-    const username = data.get('username')?.toString() ?? "";
-    const email = data.get('email')?.toString() ?? "";
-    const password = data.get('password')?.toString() ?? "";
+    const username: string = data.get('username')?.toString() ?? "";
+    const email: string = data.get('email')?.toString() ?? "";
+    const password: string = data.get('password')?.toString() ?? "";
 
-    const uValidity = usernameValidate(username);
-    const eValidity = emailValidate(email);
-    const pValidity = passwordValidate(password);
+    // strings and not booleans. They can contain the problem with the inputted values
+    const uValidity: string = usernameValidate(username);
+    const eValidity: string = emailValidate(email);
+    const pValidity: string = passwordValidate(password);
 
     setUsernameValidity(uValidity);
     setEmailValidity(eValidity);

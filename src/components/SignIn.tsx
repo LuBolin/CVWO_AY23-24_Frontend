@@ -17,8 +17,9 @@ import { useNavigate } from 'react-router-dom';
 
 export default function SignIn() {
 
-  const [usernameValidity, setUsernameValidity] = useState('Valid');
-  const [passwordValidity, setPasswordValidity] = useState('Valid');
+  // strings and not booleans. They can contain the problem with the inputted values
+  const [usernameValidity, setUsernameValidity] = useState<string>('Valid');
+  const [passwordValidity, setPasswordValidity] = useState<string>('Valid');
   const navigate = useNavigate();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
