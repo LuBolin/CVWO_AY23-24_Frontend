@@ -1,7 +1,6 @@
-# Placeholder README
-
-CVWO 23/24 Project
+# CVWO 23/24 Project Golang Backend
 Lu Bolin
+
 
 ## Setup Instructions
 
@@ -9,9 +8,11 @@ Remember to setup the backend too. It can be found at [LuBolin/CVWO_AY23-24_Back
 
 Clone the cvwo-frontend repo.
 
+
 **Rewrite rule**: On the hosting server, set a **rewrite** rule from /* to /index.html. This helps static webpages to work with React's routing.
 
 If necessary, set *Publish directory* to /dist.
+
 
 **Environment Variables**:
 
@@ -20,6 +21,7 @@ When hosting online, for example in the case of render.com, you can set them fro
 
 - VITE_APP_API_URL: address of the backend hosting server.
   For the onrender.com example, this is https://cvwo-backend-hew4.onrender.com.
+
 
 **Build & Run command**: 
 
