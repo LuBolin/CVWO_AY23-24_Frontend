@@ -6,16 +6,16 @@ Lu Bolin
 
 Remember to setup the backend too. It can be found at [LuBolin/CVWO_AY23-24_Backend (github.com)](https://github.com/LuBolin/CVWO_AY23-24_Backend).
 
-Clone the cvwo-frontend repo.
+Clone this repo.
 
 
-**Rewrite rule**: On the hosting server, set a **rewrite** rule from /* to /index.html. This helps static webpages to work with React's routing.
+#### Rewrite rule:
+On the hosting server, set a **rewrite** rule from /* to /index.html. This helps static webpages to work with React's routing.
 
-If necessary, set *Publish directory* to /dist.
+If necessary, set **Publish directory** to /dist.
 
 
-**Environment Variables**:
-
+#### Environment Variables:
 These can be set in the .env file.
 When hosting online, for example in the case of render.com, you can set them from the hosting dashboard.
 
@@ -23,8 +23,7 @@ When hosting online, for example in the case of render.com, you can set them fro
   For the onrender.com example, this is https://cvwo-backend-hew4.onrender.com.
 
 
-**Build & Run command**: 
-
+#### Build & Run command:
 ```bash
 npm install; npm run build
 ```
