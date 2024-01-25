@@ -5,7 +5,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import { Box } from '@mui/material';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+// import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter, Routes, Route, Navigate } from 'react-router-dom';
 import SignOut from './components/SignOut';
 import ForumView from './components/ForumView';
 import FourOhFour from './components/FourOhFour';
@@ -19,7 +20,7 @@ function App() {
   const appTheme = createTheme({palette:{mode: 'light'}});
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AuthProvider>
         <ThemeProvider theme={appTheme}>
           <CssBaseline enableColorScheme />
@@ -36,12 +37,12 @@ function App() {
               <Route path="/account/signin" element={<SignIn />} />
               <Route path="/account/signout" element={<SignOut />} />
               <Route path="/404" element={<FourOhFour />} />
-              <Route path="*" element={<Navigate to="/404" replace />} /> {/* Redirect to 404 page */}
+              <Route path="*" element={<Navigate to="/404" replace />} /> {/* Redirect to 404 page */}      
             </Routes>
           </Box>
         </ThemeProvider>
       </AuthProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
